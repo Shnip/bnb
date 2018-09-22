@@ -54,11 +54,15 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+  gem 'minitest-reporters', '~> 1.0.5'
+  gem 'mini_backtrace', '~> 0.1.3'
+  gem 'rails-controller-testing', '1.0.2'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'bootstrap-sass', '~> 3.3.7'
+gem 'bootstrap-sass', '>= 3.3.7'
 gem 'sass-rails', '>= 3.2'
 gem 'jquery-rails'
+gem 'sorcery'

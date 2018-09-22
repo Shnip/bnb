@@ -29,8 +29,12 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-      format.html { redirect_to @user, flash: {success: 'User was successfully created.'} }
-        format.json { render :show, status: :created, location: @user }
+        format.html {
+          UserMailer.account_activation(@user).deliver_now
+          flash[:info] = "Please check your email to activate your account."
+          redirect_to root_path
+        }
+        format.json { redirect_to root_path, status: :created, location: root_path }
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -57,7 +61,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, flash: {success: 'User was successfully destroyed.'} }
+      format.html { redirect_to root_path, flash: {success: 'User was successfully destroyed.'} }
       format.json { head :no_content }
     end
   end

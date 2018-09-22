@@ -29,13 +29,32 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
   test "register with valid information" do
     get signup_path
     assert_difference "User.count", 1 do
-      post users_path, params: {user: { first_name: "Petr",
-                                        last_name: "Petrov",
-                                        email: "petr@example.com",
+      post users_path, params: {user: { first_name: "Alex",
+                                        last_name: "Alex",
+                                        email: "alex@example.com",
                                         password: "password",
                                         password_confirmation: "password" }}
     end
+    assert_equal 1, ActionMailer::Base.deliveries.size
+    user = assigns(:user)
+    assert_redirected_to root_path
     follow_redirect!
-    assert_not flash[:success].blank?
+    assert_not flash[:info].blank?
+    assert_not user.activated?
+
+    login_user(user)
+    assert_template 'static_pages/home'
+    assert_not flash[:danger].blank?
+
+    get edit_account_activation_path("wrong token", email: user.email)
+    assert_not user.reload.activated?
+
+    get edit_account_activation_path(user.activation_token, email: "wrong email")
+    assert_not user.reload.activated?
+
+    get edit_account_activation_path(user.activation_token, email: user.email)
+    assert user.reload.activated?
+    follow_redirect!
+    assert_template 'users/show'
   end
 end

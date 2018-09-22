@@ -12,3 +12,14 @@ one:
                      "asdasdastr4325234324sdfds") %>
   reset_password_token: nil
   remember_me_token: nil
+  activated: true
+two:
+  first_name: Petr
+  last_name: Petrov
+  email: petr@example.com
+  salt: "asdasdastr4325234324sdfds"
+  crypted_password: <%= Sorcery::CryptoProviders::BCrypt.encrypt("password",
+                     "asdasdastr4325234324sdfds") %>
+  reset_password_token: nil
+  remember_me_token: nil
+  activated: false

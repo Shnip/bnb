@@ -24,7 +24,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       post users_url, params: { user: { email: "example@example.com", first_name: "petr", last_name: "petrov", password: "password", password_confirmation: "password" } }
     end
 
-    assert_redirected_to user_url(User.last)
+    assert_redirected_to root_url
   end
 
   test "should not show user when not logged in" do
@@ -76,6 +76,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       delete user_url(@user)
     end
 
-    assert_redirected_to users_url
+    assert_redirected_to root_path
   end
 end

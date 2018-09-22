@@ -7,8 +7,14 @@ class UserSessionsController < ApplicationController
 
   def create
     if @user = login(session_params[:email], session_params[:password], session_params[:remember_me])
-      flash[:success] = 'Login successful'
-      redirect_back_or_to(:users)
+      if @user.activated?
+        flash[:success] = 'Login successful'
+        redirect_back_or_to(@user)
+      else
+        flash[:danger] = "Yout account is not activated.
+                          Please check your email for the activation link"
+        redirect_to root_path
+      end
     else
       flash.now[:danger] = 'Login failed'
       render 'new'
@@ -17,7 +23,7 @@ class UserSessionsController < ApplicationController
 
   def destroy
     logout
-    redirect_to(:users, flash: {success: 'Logged out!'})
+    redirect_to(root_path, flash: {success: 'Logged out!'})
   end
 
   private

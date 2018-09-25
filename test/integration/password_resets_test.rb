@@ -32,13 +32,13 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
          params: { user: { password:              "foobaz",
                            password_confirmation: "barquux" } }
     assert_template 'password_resets/edit'
-    assert_select 'div#error_explanation'
+    assert_select 'div.error_explanation'
     # Empty password and confirmation
     patch password_reset_path(@user.reset_password_token),
          params: { user: { password:              "",
                            password_confirmation: "" } }
     assert_template 'password_resets/edit'
-    assert_select 'div#error_explanation'
+    assert_select 'div.error_explanation'
     # Valid password & confirmation
     patch password_reset_path(@user.reset_password_token),
           params: { user: { password:              "foobaz",

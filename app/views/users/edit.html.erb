@@ -1,16 +1,32 @@
-<% provide(:title, "Edit user") %>
-<h1 class="text-center">Editing User</h1>
+<% provide(:title, "Edit Profile") %>
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_with(model: @user, local: true) do |form| %>
-      <%= render 'fields', form: form %>
+  <aside class="col-sm-12 col-md-3">
+      <ul class="sidebar">
+        <li class="sidebar-item">
+          <%= link_to "Edit Profile", edit_user_path(@user), class: "sidebar-link sidebar-active" %>
+        </li>
+      </ul>
+    <%= link_to 'Show', @user , class: "btn btn-default w-100"%>
+  </aside>
+  <div class="col-sm-12 my-sm-3 my-md-0 col-md-9">
+    <div class="card">
+      <div class="card-header">
+        Required Information
+      </div>
 
-      <%= form.submit "Save changes", class: "btn btn-primary" %>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6 offset-md-3">
+            <%= form_with(model: @user, local: true) do |form| %>
+              <%= render 'fields', form: form %>
 
-    <% end %>
+              <%= form.submit "Save changes", class: "btn btn-fiery w-100" %>
 
-    <%= link_to 'Show', @user %> |
-    <%= link_to 'Back', users_path %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

@@ -5,7 +5,7 @@ root 'static_pages#home'
 get 'signup' => 'users#new', :as => :signup
 get 'login' => 'user_sessions#new', :as => :login
 post 'login' => 'user_sessions#create'
-post 'logout' => 'user_sessions#destroy', :as => :logout
+delete 'logout' => 'user_sessions#destroy', :as => :logout
 
 resources :user_sessions, only: [:new, :create, :destroy]
 resources :users

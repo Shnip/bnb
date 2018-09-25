@@ -9,7 +9,7 @@ class UserSessionsController < ApplicationController
     if @user = login(session_params[:email], session_params[:password], session_params[:remember_me])
       if @user.activated?
         flash[:success] = 'Login successful'
-        redirect_back_or_to(@user)
+        redirect_back_or_to(user_path(@user))
       else
         flash[:danger] = "Yout account is not activated.
                           Please check your email for the activation link"

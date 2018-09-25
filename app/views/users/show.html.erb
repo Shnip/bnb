@@ -1,29 +1,36 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <aside class="col-sm-12 col-md-3 user_profile">
+    <section class="profile_photo">
+      <%= image_tag gravatar_url(@user, size: 300), class: "img-responsive center-block" %>
+    </section>
+    <section class="card verification_panel">
+      <div class="card-header">
+        Verification
+      </div>
+      <div class="card-body">
+        <ul>
+          <li>
+            <div class="row">
+              <div class="col-9">Email address</div>
+              <div class="col-3"><i class="far fa-check-circle"></i></div>
+            </div>
 
-<p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>Crypted password:</strong>
-  <%= @user.crypted_password %>
-</p>
-
-<p>
-  <strong>Salt:</strong>
-  <%= @user.salt %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+          </li>
+          <li>
+            <div class="row">
+              <div class="col-9">Phone</div>
+              <div class="col-3"><i class="far fa-check-circle"></i></div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </aside>
+  <div class="col-sm-12 my-sm-3 my-md-0 col-md-9">
+    <h2>Hello, my name is <%= @user.full_name %> </h2>
+    <p>on the site since <%= @user.created_at.strftime("%B %Y") %></p>
+    <% if current_user?(@user) %>
+      <%= link_to "Edit Profile", edit_user_path(@user) %>
+    <% end %>
+  </div>
+</div>

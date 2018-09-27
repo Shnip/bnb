@@ -6,34 +6,33 @@ ul{
   list-style: none;
   padding-left: 0;
 }
+/* FORM */
+
+form {
+  label{
+    color: #565a5c;
+    font-size: 1.05em;
+    font-weight: 500;
+  }
+
+  select{
+    color: #565a5c;
+    border-radius: 2px;
+  }
+}
 
 .form_divider{
   margin-top: 20px;
   margin-bottom: 10px;
 }
+/* */
 
 .error-list{
   list-style: none;
   padding-left: 0px;
 }
 
-.user_profile{
-  .profile_photo{
-    border: 1px solid #dce0e0;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
-
-    img{
-      width: 100%;
-    }
-  }
-
-  .verification_panel{
-    margin: 10px 0 10px 0;
-    border: 1px solid #dce0e0;
-  }
-}
-
-.btn-fiery{
+.btn-fox{
   background-color: #FF5A5F;
   color: #fff;
   font-weight: 700;
@@ -64,6 +63,7 @@ ul{
     color: #333;
   }
 }
+/* SIDEBAR */
 
 .sidebar{
   .sidebar-item{
@@ -86,6 +86,22 @@ ul{
     color: #565a5c;
     font-weight: 700;
     text-decoration: none;
+  }
+}
+
+.user_profile{
+  .profile_photo{
+    border: 1px solid #dce0e0;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+
+    img{
+      width: 100%;
+    }
+  }
+
+  .verification_panel{
+    margin: 10px 0 10px 0;
+    border: 1px solid #dce0e0;
   }
 }
 
@@ -117,7 +133,8 @@ a.navbar-brand {
   margin-left: 0.5rem;
   margin-right: auto;
   margin-bottom: 0;
+  color: #FF5A5F;
   &:hover{
-    color: #FF5A5F;
+    color: #565a5c;
   }
 }

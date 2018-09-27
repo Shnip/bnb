@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
 
+  has_many :rooms
+  
   attr_accessor :activation_token
 
   validates :password, length: { minimum: 4 }, if: -> { new_record? || changes[:crypted_password] }
@@ -15,6 +17,7 @@ class User < ApplicationRecord
   validates :last_name, presence: true, length: {maximum: 50}
 
   before_create :create_activation_digest
+
 
   def send_activation_email
     UserMailer.account_activation(self).deliver_now

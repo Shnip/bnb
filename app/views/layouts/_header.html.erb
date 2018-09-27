@@ -1,24 +1,31 @@
-<div class="d-flex flex-column flex-sm-row align-items-center p-2 p-x-4 mb-3 bg-white border-bottom shadow-sm">
-  <%= link_to "BnB", root_path, class: "navbar-brand h1" %>
-  <nav>
-    <ul class="nav justify-content-end">
-      <% unless current_user %>
-        <li class="nav-item"><%= link_to "Sign Up", new_user_path, class: 'nav-link text-dark' %></li>
-        <li class="nav-item"><%= link_to "Log In", login_path, class: 'nav-link text-dark' %></li>
-      <% else %>
-        <li class="nav-item dropdown">
-          <a href="#" class="nav-link dropdown-toggle text-dark" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            <%= image_tag gravatar_url(current_user, size: 35), alt: "Avatar", class: "rounded-circle" %>
-            <%= current_user.full_name %>
-          </a>
-          <div class="dropdown-menu">
-            <%= link_to "My Profile", user_path(current_user), class: "dropdown-item" %>
-            <%= link_to "Edit Profile", edit_user_path(current_user), class: "dropdown-item" %>
-            <div role="separator" class="dropdown-divider"></div>
-            <%= link_to "Log Out", logout_path, method: :delete, class: "dropdown-item" %>
-          </div>
-        </li>
-      <% end %>
-    </ul>
-  </nav>
+<div class="d-flex flex-row align-items-center pt-2 p-x-4 mb-3 bg-white border-bottom shadow-sm">
+  <div class="container d-flex">
+    <%= link_to "BnB", root_path, class: "navbar-brand h1" %>
+    <nav>
+      <ul class="nav justify-content-end">
+        <% unless current_user %>
+          <li class="nav-item"><%= link_to "Sign Up", new_user_path, class: 'nav-link text-dark' %></li>
+          <li class="nav-item"><%= link_to "Log In", login_path, class: 'nav-link text-dark' %></li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "#", class: 'nav-link text-dark' do %>
+              <i class="far fa-envelope" aria-hidden="true"></i> Messages
+            <% end %>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle text-dark" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <%= image_tag gravatar_url(current_user, size: 35), alt: "Avatar", class: "rounded-circle" %>
+              <%= current_user.full_name %>
+            </a>
+            <div class="dropdown-menu">
+              <%= link_to "My Profile", user_path(current_user), class: "dropdown-item" %>
+              <%= link_to "Edit Profile", edit_user_path(current_user), class: "dropdown-item" %>
+              <div role="separator" class="dropdown-divider"></div>
+              <%= link_to "Log Out", logout_path, method: :delete, class: "dropdown-item" %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
 </div>

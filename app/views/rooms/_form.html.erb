@@ -2,7 +2,7 @@
   <div class="card-header"><%= card_title %></div>
   <div class="card-body">
     <div class="col-sm-10 m-auto">
-      <%= form_for @room do |f| %>
+      <%= form_for @room, html: {multipart: true} do |f| %>
         <div class="row">
           <div class="col-sm-4 select">
             <div class="form-group">
@@ -137,6 +137,22 @@
               <%= f.text_field :price, placeholder: "eg. 100$", class: "form-control" %>
             </div>
           </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <span class="btn btn-file btn-default">
+                <i class="fas fa-cloud-upload-alt fa-lg"></i> Upload photos
+                <%= file_field_tag "images[]", type: :file, multiple: true %>
+              </span>
+
+            </div>
+          </div>
+        </div>
+
+        <div id="photos">
+          <%= render 'photos/list' %>
         </div>
 
         <div class="row">

@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   skip_before_action :require_login, only: [:new, :create]
+  before_action :has_access?, only: [:edit, :update]
 
   # GET /users
   # GET /users.json
@@ -74,5 +75,9 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+    end
+
+    def has_access?
+      redirect_to(root_path, flash: {danger: "You haven't permission"}) unless current_user?(@user)
     end
 end

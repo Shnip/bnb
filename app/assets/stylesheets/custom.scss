@@ -63,6 +63,27 @@ form {
     color: #333;
   }
 }
+
+.btn-file{
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-file input[type=file]{
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline:none;
+  background:#fff;
+  cursor: inherit;
+  display: block;
+}
 /* SIDEBAR */
 
 .sidebar{
@@ -102,6 +123,25 @@ form {
   .verification_panel{
     margin: 10px 0 10px 0;
     border: 1px solid #dce0e0;
+  }
+}
+
+.photo-preview{
+  padding: 0;
+  height: 170px;
+}
+
+#photos{
+  a{
+    color: inherit;
+  }
+
+  img{
+    height: 100%;
+  }
+
+  .card{
+    margin: 10px 0px;
   }
 }
 

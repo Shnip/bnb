@@ -1,2 +1,33 @@
-<h1>Rooms#index</h1>
-<p>Find me in app/views/rooms/index.html.erb</p>
+<div class="row">
+  <div class="col-sm-3">
+    <ul class="sidebar">
+      <li class="sidebar-item">
+        <%= link_to "Your Listing", rooms_path, class: "sidebar-link sidebar-active" %>
+      </li>
+      <li class="sidebar-item">
+        <%= link_to "Your Reservaions", rooms_path, class: "sidebar-link" %>
+      </li>
+    </ul>
+  </div>
+  <div class="col-sm-9">
+    <div class="card">
+      <div class="card-header">Listings</div>
+      <div class="card-body">
+        <% @rooms.each do |room| %>
+          <div class="row">
+            <div class="col-sm-2">
+              <%= image_tag room.photos[0].image.url(:thumb) unless room.photos.empty? %>
+            </div>
+            <div class="col-sm-7">
+              <h4><%= room.listing_name %></h4>
+            </div>
+            <div class="col-sm-3">
+              <%= link_to "Update", edit_room_path(room), class: "btn btn-fox" %>
+            </div>
+          </div>
+          <hr>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

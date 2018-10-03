@@ -68,3 +68,4 @@ gem 'jquery-rails'
 gem 'sorcery'
 gem 'font-awesome-sass', '~> 5.3.1'
 gem "paperclip", "~> 6.0.0"
+gem 'geocoder'

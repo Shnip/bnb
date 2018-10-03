@@ -8,6 +8,11 @@
           <li class="nav-item"><%= link_to "Log In", login_path, class: 'nav-link text-dark' %></li>
         <% else %>
           <li class="nav-item">
+            <%= link_to new_room_path, class: 'nav-link text-dark' do %>
+              <i class="fas fa-home"></i> Become a host
+            <% end %>
+          </li>
+          <li class="nav-item">
             <%= link_to "#", class: 'nav-link text-dark' do %>
               <i class="far fa-envelope" aria-hidden="true"></i> Messages
             <% end %>
@@ -20,6 +25,7 @@
             <div class="dropdown-menu">
               <%= link_to "My Profile", user_path(current_user), class: "dropdown-item" %>
               <%= link_to "Edit Profile", edit_user_path(current_user), class: "dropdown-item" %>
+              <%= link_to "My rooms", rooms_path, class: "dropdown-item" %>
               <div role="separator" class="dropdown-divider"></div>
               <%= link_to "Log Out", logout_path, method: :delete, class: "dropdown-item" %>
             </div>

@@ -1,3 +1,4 @@
+<%= provide(:title, @room.listing_name) %>
 <div class="card">
   <div class="card-body">
     <div class="row">
@@ -10,10 +11,10 @@
       <div class="col-sm-8">
         <div class="row">
           <div class="col-sm-3 text-center">
-              <%= image_tag gravatar_url(@room.user), class: "avatar-large rounded-circle" %>
-              <section>
+              <%= image_tag gravatar_url(@room.user), class: "avatar-large rounded-circle  h-75" %>
+              <p class="h4 h-25">
                 <%= @room.user.full_name %>
-              </section>
+              </p>
           </div>
 
           <div class="col-sm-9">
@@ -45,7 +46,18 @@
         </div>
       </div>
       <div class="col-sm-4">
-
+        <div class="room-price">
+          <span class="text-left">$<%= @room.price %></span>
+          <span class="text-right">Per Night</span>
+        </div>
+        <div>
+          <% if logged_in? %>
+            <%= render 'reservations/form' %>
+          <% else %>
+            <h5>Sign in to book this room.</h5>
+            <%= link_to "Sign in", login_path, class: "btn btn-fox w-100" %>
+          <% end %>
+        </div>
       </div>
     </div>
     <!-- About this Listing -->
@@ -158,7 +170,7 @@
         <% for room in @room.nearbys(10) %>
           <div class="col-sm-4">
             <div class="card">
-              <div class="card-header photo-preview h-100">
+              <div class="card-header photo-preview">
                 <%= image_tag room.photos.first.image.url(:medium), class: "card-img-top" %>
               </div>
               <div class="card-body">

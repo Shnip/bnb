@@ -77,7 +77,6 @@ function preparePreview(){
   let input = document.querySelector('.btn-file input');
   let container = document.getElementById('photo-preview');
   if(!input || !container ){
-    console.log("Input or Container don't exist")
     return false;
   }
   new PhotoPreview({container: container, input: input});

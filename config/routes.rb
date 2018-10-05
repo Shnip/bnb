@@ -13,5 +13,12 @@ resources :password_resets, only: [:new, :create, :edit, :update]
 resources :account_activations, only: [:edit]
 resources :rooms
 resources :photos
+
+resources :rooms do
+  resources :reservations, only: [:create]
+end
+
+get 'preload' => 'reservations#preload'
+get 'check_conflict' => 'reservations#check_conflict'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

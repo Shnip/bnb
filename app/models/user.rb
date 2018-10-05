@@ -1,8 +1,9 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
 
-  has_many :rooms
-  
+  has_many :rooms, dependent: :destroy
+  has_many :reservations, dependent: :destroy
+
   attr_accessor :activation_token
 
   validates :password, length: { minimum: 4 }, if: -> { new_record? || changes[:crypted_password] }

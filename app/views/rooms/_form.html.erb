@@ -3,6 +3,9 @@
   <div class="card-body">
     <div class="col-sm-10 m-auto">
       <%= form_for @room, html: {multipart: true} do |f| %>
+
+        <%= render 'shared/form_error_messages', object: f.object %>
+
         <div class="row">
           <div class="col-sm-4 select">
             <div class="form-group">

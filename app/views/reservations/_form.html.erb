@@ -15,9 +15,8 @@
   <%= f.hidden_field :price, value: @room.price %>
   <%= f.hidden_field :total, id: 'reservation_total' %>
 
+  <h4><span data-reservation-message=""></span></h4>
   <div id="reservation-date-preview">
-    <h4><span data-reservation-message=""></span></h4>
-
     <table class="reservation-table table">
       <tbody>
         <tr>

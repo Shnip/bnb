@@ -1,9 +1,15 @@
 class ReservationsController < ApplicationController
 
   def create
-    @reservation = current_user.reservations.create(reservation_params)
+    unless is_conflict(reservation_params[:start_date], reservation_params[:end_date])
+      @reservation = current_user.reservations.create(reservation_params)
 
-    redirect_to( @reservation.room, flash: {success: "Your reservation has been created!"})
+      redirect_to( @reservation.room, flash: {success: "Your reservation has been created!"})
+    else
+      @room = Room.find(params[:room_id])
+      flash.now[:danger] = "This date range is not available"
+      render 'rooms/show'
+    end
   end
 
   def preload
@@ -11,7 +17,7 @@ class ReservationsController < ApplicationController
 
     today = Date.today
     reservations = room.reservations.select('id, start_date, end_date').where("start_date >= ? OR end_date >= ?", today, today)
-    debugger
+
     respond_to do |format|
       format.json{ render json: reservations }
     end

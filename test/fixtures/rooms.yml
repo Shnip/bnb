@@ -14,11 +14,33 @@ one:
   is_air: false
   is_heating: false
   is_internet: false
-  price: 1
+  price: 200
   active: false
   user: one
+  latitude: null
+  longitude: null
 
 two:
+  home_type: MyString
+  room_type: MyString
+  accommodate: 1
+  bed_room: 1
+  bath_room: 1
+  listing_name: MyString
+  summary: MyText
+  address: MyString
+  is_tv: false
+  is_kitchen: false
+  is_air: false
+  is_heating: false
+  is_internet: false
+  price: 100
+  active: false
+  user: one
+  latitude: null
+  longitude: null
+
+three:
   home_type: MyString
   room_type: MyString
   accommodate: 1
@@ -35,3 +57,5 @@ two:
   price: 1
   active: false
   user: two
+  latitude: null
+  longitude: null

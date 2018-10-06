@@ -3,8 +3,6 @@ require 'test_helper'
 class UsersControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = users(:one)
-    @user.password = "password"
-    @user.password_confirmation = "password"
   end
 
   #WHEN NOT LOGGED IN

@@ -29,13 +29,6 @@ class RoomsController < ApplicationController
     else
       render :new
     end
-
-    respond_to do |format|
-      format.html {
-
-      }
-      format.json { render json: @resource }
-    end
   end
 
   def edit

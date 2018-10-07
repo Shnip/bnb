@@ -25,7 +25,9 @@
             <div class="dropdown-menu">
               <%= link_to "My Profile", user_path(current_user), class: "dropdown-item" %>
               <%= link_to "Edit Profile", edit_user_path(current_user), class: "dropdown-item" %>
-              <%= link_to "My rooms", rooms_path, class: "dropdown-item" %>
+              <%= link_to "Your Listings", rooms_path, class: "dropdown-item" %>
+              <%= link_to "Your Reservations", your_reservations_path, class: "dropdown-item" %>
+              <%= link_to "Your Trips", your_trips_path, class: "dropdown-item" %>
               <div role="separator" class="dropdown-divider"></div>
               <%= link_to "Log Out", logout_path, method: :delete, class: "dropdown-item" %>
             </div>

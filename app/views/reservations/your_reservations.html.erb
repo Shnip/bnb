@@ -1,0 +1,46 @@
+<%= provide(:title, "Your reservations") %>
+<div class="row">
+  <div class="col-sm-3">
+    <ul class="sidebar">
+      <li class="sidebar-item">
+        <%= link_to "Your Listing", rooms_path, class: "sidebar-link" %>
+      </li>
+      <li class="sidebar-item">
+        <%= link_to "Your Reservaions", your_reservations_path, class: "sidebar-link sidebar-active" %>
+      </li>
+      <li class="sidebar-item">
+        <%= link_to "Your trips", your_trips_path, class: "sidebar-link" %>
+      </li>
+    </ul>
+  </div>
+  <div class="col-sm-9">
+    <div class="card">
+      <div class="card-header">Your Reservations</div>
+      <div class="card-body">
+        <% @rooms.each do |room| %>
+          <% room.reservations.each do |reservation| %>
+            <div class="row">
+              <div class="col-sm-2">
+                <%= reservation.start_date.strftime('%v') %>
+              </div>
+              <div class="col-sm-6">
+                <%= link_to room_path(reservation.room) do %>
+                  <%= image_tag reservation.room.photos[0].image.url(:thumb) %>
+                <% end %>
+              </div>
+              <div class="col-sm-2">
+                <%= link_to user_path(reservation.user) do %>
+                  <%= image_tag gravatar_url(reservation.user), class: "rounded-circle" %>
+                <% end %>
+              </div>
+              <div class="col-sm-2">
+                <%= reservation.total %>
+              </div>
+            </div>
+            <hr>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

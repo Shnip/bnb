@@ -20,5 +20,7 @@ end
 
 get 'preload' => 'reservations#preload'
 get 'check_conflict' => 'reservations#check_conflict'
+get 'your_trips' => 'reservations#your_trips'
+get 'your_reservations' => 'reservations#your_reservations'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

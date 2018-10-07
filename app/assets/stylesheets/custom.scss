@@ -128,11 +128,24 @@ form {
 }
 
 .photo-preview{
-  padding: 0;
-  height: 170px;
+  .card-header{
+    padding: 0;
+    height: 170px;
 
-  img{
-    height: 100%;
+    img{
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .card-body a{
+    color: #717374;
+    text-decoration: none;
+
+    &:hover{
+      color: #868a8b;
+      text-decoration: none;
+    }
   }
 }
 
@@ -205,6 +218,16 @@ i.icon{
   }
   span.text-right{
     padding-right: 5px;
+  }
+}
+
+.item-link{
+  color: #717374;
+  text-decoration: none;
+
+  &:hover{
+    color: #868a8b;
+    text-decoration: none;
   }
 }
 

@@ -52,10 +52,9 @@
         </div>
         <div>
           <% if logged_in? %>
-            <%= render 'reservations/form' %>
+            <%= render 'reservations/form' unless current_user?(@room.user)%>
           <% else %>
             <h5>Sign in to book this room.</h5>
-            <%= link_to "Sign in", login_path, class: "btn btn-fox w-100" %>
           <% end %>
         </div>
       </div>

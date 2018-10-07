@@ -30,8 +30,22 @@
   <div class="col-sm-12 my-sm-3 my-md-0 col-md-9">
     <h2>Hello, my name is <%= @user.full_name %> </h2>
     <p>on the site since <%= @user.created_at.strftime("%B %Y") %></p>
-    <% if current_user?(@user) %>
-      <%= link_to "Edit Profile", edit_user_path(@user) %>
-    <% end %>
+
+    <h4>Listings (<%= @rooms.count %>)</h4>
+
+    <div class="row">
+      <% @rooms.each do |room| %>
+        <div class="col-sm-4">
+          <div class="card photo-preview">
+            <div class="card-header">
+              <%= image_tag room.photos.first.image.url() %>
+            </div>
+            <div class="card-body">
+              <%= link_to room.listing_name, room_path(room) %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

@@ -13,7 +13,7 @@
             <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to "#", class: 'nav-link text-dark' do %>
+            <%= link_to conversations_path(current_user), class: 'nav-link text-dark' do %>
               <i class="far fa-envelope" aria-hidden="true"></i> Messages
             <% end %>
           </li>

@@ -1,0 +1,18 @@
+<div class="message">
+  <div class="message-wrap">
+    <div class="message-avatar">
+      <%= image_tag gravatar_url(message.user, size:50), class: "rounded-circle" %>
+    </div>
+    <div class="message-content">
+      <div class="message-header">
+        <span class="left">
+          <strong><%= message.user.full_name %></strong>
+        </span>
+        <span class="right"><%= message.message_time %></span>
+      </div>
+      <div class="message-body">
+        <%= message.content %>
+      </div>
+    </div>
+  </div>
+</div>

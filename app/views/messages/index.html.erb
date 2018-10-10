@@ -1,0 +1,83 @@
+<div class="row">
+  <div class="col-sm-3 text-center">
+      <section class="profile-photo">
+        <%= image_tag gravatar_url(@other, size:110), class: "rounded-circle img-fluid" %>
+      </section>
+
+      <section>
+        <strong><%= @other.full_name %></strong>
+      </section>
+
+      <%= link_to "View Profile", user_path(@other), class: "btn btn-default w-100 my-3" %>
+  </div>
+  <div class="col-sm-9">
+    <div class="card">
+      <div class="card-header">Conversation with <%= @other.full_name %></div>
+      <div class="card-body">
+        <div class="container">
+          <div class="new_message">
+            <%= form_for [@conversation, @conversation.messages.new], remote: true do |f| %>
+
+              <%= f.hidden_field :user_id, value: current_user.id %>
+              <%= f.text_area :content, placeholder: "Add a personal message", class: "form-control" %>
+              <br>
+              <%= f.submit  "Send Message", class: "btn btn-fox" %>
+
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="chat" class="mt-4">
+      <%= render @messages %>
+    </div>
+  </div>
+</div>
+
+<script>
+  var source = new EventSource("messages/events");
+  source.addEventListener('message', function(e){
+    let data = JSON.parse(e.data);
+
+    let message = $('<div>').addClass('message');
+    let message_wrap = $('<div>').addClass('message-wrap');
+    message.append(message_wrap);
+
+    let message_avatar = $('<div>').addClass('message-avatar');
+    let img = $('<img>').addClass('rounded-circle').attr('src', data.src);
+    message_avatar.append(img);
+    message_wrap.append(message_avatar);
+
+    let message_content = $('<div>').addClass('message-content');
+    let message_header = $('<div>').addClass('message-header').append(
+      $('<span>').addClass('left').append($('<strong>').text(data.full_name))
+    ).append(
+      $('<span>').addClass('right').text(data.date)
+    );
+    message_content.append(message_header);
+    let message_body = $('<div>').addClass('message-body').text(data.content);
+    message_content.append(message_body);
+    message_wrap.append(message_content);
+
+    $("#chat").prepend(message);
+
+   });
+
+  var presed = {};
+
+  document.querySelector('textarea').onfocus = function(){
+    this.onkeydown = function(event){
+      if (event.keyCode == 17 || event.keyCode == 13) {
+        presed[event.keyCode]= true;
+
+        if(presed["17"] && presed["13"]){
+          presed = {};
+          document.forms.new_message.commit.click();
+        }
+      }
+    }
+    this.onkeyup = function(event){
+      presed = {};
+    }
+  }
+</script>

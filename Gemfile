@@ -70,3 +70,4 @@ gem 'font-awesome-sass', '~> 5.3.1'
 gem "paperclip", "~> 6.0.0"
 gem 'geocoder'
 gem 'jquery-ui-rails'
+gem 'redis'

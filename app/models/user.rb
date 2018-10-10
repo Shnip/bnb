@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
   has_many :rooms, dependent: :destroy
   has_many :reservations, dependent: :destroy
+  has_many :conversations
 
   attr_accessor :activation_token
 

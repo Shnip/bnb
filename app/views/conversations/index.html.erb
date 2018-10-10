@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-header">Your Conversations</div>
+      <div class="card-body">
+        <div class="container">
+          <% unless @conversations.blank? %>
+            <% @conversations.each do |conversation| %>
+              <% unless conversation.messages.blank? %>
+                <% other = current_user == conversation.sender ? conversation.recipient : conversation.sender %>
+                <%= link_to conversation_messages_path(conversation) do %>
+                  <div class="row conversation">
+                    <div class="col-sm-2">
+                      <%= image_tag gravatar_url(other, size:70), class: "rounded-circle" %>
+                    </div>
+                    <div class="col-sm-2">
+                      <div><%= other.full_name %></div>
+                      <div><%= conversation.messages.last.message_time %></div>
+                    </div>
+                    <div class="col-sm-8">
+                      <%= conversation.messages.last.content %>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% else %>
+            <h4 class="my-5 text-center">
+              You have not conversations yet
+            </h4>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

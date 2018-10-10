@@ -2,16 +2,16 @@
 <div class="card">
   <div class="card-body">
     <div class="row">
-      <div class="col-sm-12 d-flex justify-content-center">
+      <div class="col-sm-12 justify-content-center">
         <%= image_tag @photos.first.image.url(), class: "img-fluid" unless @photos.blank? %>
       </div>
     </div>
 
-    <div class="row my-2">
+    <div class="row my-3">
       <div class="col-sm-8">
         <div class="row">
           <div class="col-sm-3 text-center">
-              <%= image_tag gravatar_url(@room.user), class: "avatar-large rounded-circle  h-75" %>
+              <%= image_tag gravatar_url(@room.user, size:100), class: "rounded-circle h-75" %>
               <p class="h4 h-25">
                 <%= @room.user.full_name %>
               </p>
@@ -60,14 +60,14 @@
       </div>
     </div>
     <!-- About this Listing -->
-    <div class="row my-2">
+    <div class="row my-3">
       <div class="col-sm-12">
         <h2>About this Listing</h2>
         <p><%= @room.summary %></p>
       </div>
     </div>
     <!-- Amentities -->
-    <div class="row my-2">
+    <div class="row my-3">
       <div class="col-sm-2">
         <p>Amentities</p>
       </div>
@@ -103,7 +103,7 @@
       </div>
     </div>
     <!-- Carousel -->
-    <div class="row my-2">
+    <div class="row my-3">
       <div class="col-md-10 offset-md-1 d-flex justify-content-center">
         <% unless @photos.blank? %>
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -138,7 +138,7 @@
       </div>
     </div>
     <!-- Google Map -->
-    <div class="row my-2">
+    <div class="row my-3">
       <div class="col-md-12">
         <div id="map">
 
@@ -163,7 +163,7 @@
       </div>
     </div>
     <h3>Near by</h3>
-    <div class="row">
+    <div class="row my-3">
 
       <% unless @room.nearbys(10).blank? %>
         <% for room in @room.nearbys(10) %>

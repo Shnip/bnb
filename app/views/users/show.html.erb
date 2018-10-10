@@ -2,8 +2,18 @@
 <div class="row">
   <aside class="col-sm-12 col-md-3 user_profile">
     <section class="profile_photo">
-      <%= image_tag gravatar_url(@user, size: 300), class: "img-responsive center-block" %>
+      <%= image_tag gravatar_url(@user, size: 300), class: "center-block" %>
     </section>
+
+    <section class="profile-btn-section">
+      <% if current_user?(@user) %>
+        <%= link_to "Edit Profile", edit_user_path(current_user), class: "btn btn-default" %>
+        <%= link_to "Messages", conversations_path, class: "btn btn-fox" %>
+      <% else %>
+        <%= link_to "Send message", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: :post, class: "btn btn-fox" %>
+      <% end %>
+    </section>
+
     <section class="card verification_panel">
       <div class="card-header">
         Verification

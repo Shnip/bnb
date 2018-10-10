@@ -21,6 +21,10 @@ form {
   }
 }
 
+a, a:hover{
+  text-decoration: none;
+}
+
 .form_divider{
   margin-top: 20px;
   margin-bottom: 10px;
@@ -125,6 +129,15 @@ form {
     margin: 10px 0 10px 0;
     border: 1px solid #dce0e0;
   }
+
+  .profile-btn-section{
+    margin-top: 4px;
+
+    .btn{
+      margin: 2px 0;
+      width: 100%
+    }
+  }
 }
 
 .photo-preview{
@@ -139,8 +152,9 @@ form {
   }
 
   .card-body a{
-    color: #717374;
+    color: #4b4c4c;
     text-decoration: none;
+    font-weight: 500;
 
     &:hover{
       color: #868a8b;
@@ -197,10 +211,6 @@ i.icon{
   font-size: 1.2em;
 }
 
-#reservation-date-preview{
-  display: block;
-}
-
 .room-price{
   display: flex;
   padding: 12px 5px;
@@ -228,6 +238,56 @@ i.icon{
   &:hover{
     color: #868a8b;
     text-decoration: none;
+  }
+}
+
+.conversation{
+  color: #636363;
+  padding: 10px;
+  border-bottom: 1px solid #dce0e0;
+
+  &:hover, &:focus{
+    background-color: #f4f4f5;
+  }
+}
+
+.message{
+  border: 1px solid #dce0e0;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  padding: 15px 10px;
+  margin: 10px 0px;
+  box-sizing: border-box;
+
+  .message-wrap{
+    overflow: hidden;
+    clear: both;
+
+    .message-content{
+      float: left;
+      padding-left: 10px;
+      box-sizing: border-box;
+      width: 90%;
+
+      .message-header{
+        margin-bottom: 5px;
+        .right{
+          float:right;
+        }
+
+        .left{
+          float: left;
+        }
+      }
+
+      .message-body{
+        clear: both;
+      }
+    }
+
+    .message-avatar{
+      float:left;
+      margin: 5px;
+    }
   }
 }
 

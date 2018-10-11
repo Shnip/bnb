@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :reservations, dependent: :destroy
   has_many :conversations
   has_many :messages, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 
   attr_accessor :activation_token
 

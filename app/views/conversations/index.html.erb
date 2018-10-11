@@ -13,11 +13,11 @@
                     <div class="col-sm-2">
                       <%= image_tag gravatar_url(other, size:70), class: "rounded-circle" %>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-3 col-md-2">
                       <div><%= other.full_name %></div>
                       <div><%= conversation.messages.last.message_time %></div>
                     </div>
-                    <div class="col-sm-8">
+                    <div class="col-sm-7 col-md-8">
                       <%= conversation.messages.last.content %>
                     </div>
                   </div>

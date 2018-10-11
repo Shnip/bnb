@@ -16,11 +16,11 @@ resources :user_sessions, only: [:new, :create, :destroy]
 resources :users
 resources :password_resets, only: [:new, :create, :edit, :update]
 resources :account_activations, only: [:edit]
-resources :rooms
 resources :photos
 
 resources :rooms do
   resources :reservations, only: [:create]
+  resources :reviews, only: [:create, :destroy]
 end
 
 resources :conversations, only: [:create, :index] do

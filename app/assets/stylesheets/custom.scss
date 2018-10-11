@@ -257,6 +257,7 @@ i.icon{
   padding: 15px 10px;
   margin: 10px 0px;
   box-sizing: border-box;
+  display: flex;
 
   .message-wrap{
     overflow: hidden;
@@ -266,7 +267,8 @@ i.icon{
       float: left;
       padding-left: 10px;
       box-sizing: border-box;
-      width: 90%;
+      max-width: 90%;
+      min-width: 84%;
 
       .message-header{
         margin-bottom: 5px;
@@ -286,10 +288,45 @@ i.icon{
 
     .message-avatar{
       float:left;
-      margin: 5px;
+      margin: 7px;
     }
   }
 }
+
+.review{
+  overflow: hidden;
+  clear: both;
+  display: flex;
+
+  .review-avatar{
+    float: left;
+    text-align: center;
+  }
+
+  .review-body{
+    float: left;
+    padding-left: 1.3rem;
+    max-width: 90%;
+    min-width: 87%;
+
+    .review-date{
+      font-size: 0.8rem;
+      color: #7b7c7d;
+    }
+
+    .review-content{
+      margin-top: 5px;
+    }
+  }
+}
+
+.bordered-review{
+  border: 1px solid #dce0e0;
+  padding: 13px;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  margin-bottom: 1rem;
+}
+
 
 /* BOOTSTRAP */
 .panel, .btn, .list-group-item:first-child, .list-group-item:last-child{

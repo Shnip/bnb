@@ -1,0 +1,18 @@
+<%= form_for [@room, @room.reviews.new], remote: true do |f| %>
+  <%= f.hidden_field :room_id, value: @room.id %>
+
+  <div id="review-stars" class="mb-2"></div>
+  <div class="form-group">
+    <%= f.text_field :comment, class: 'form-control' %>
+  </div>
+
+  <%= f.submit "Create review", class: "btn btn-fox" %>
+<% end %>
+
+<script>
+  $("#review-stars").raty({
+    path: '/assets',
+    scoreName: 'review[star]',
+    score: 1
+  });
+</script>

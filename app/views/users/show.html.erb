@@ -45,7 +45,7 @@
 
     <div class="row">
       <% @rooms.each do |room| %>
-        <div class="col-sm-4">
+        <div class="col-sm-4 col-md-4 my-sm-2">
           <div class="card photo-preview">
             <div class="card-header">
               <%= image_tag room.photos.first.image.url() %>
@@ -57,5 +57,41 @@
         </div>
       <% end %>
     </div>
+    <br>
+    <h4>Reviews</h4>
+
+    <% @rooms.each do |room| %>
+      <% unless room.reviews.blank? %>
+        <% room.reviews.each do |review| %>
+          <div class="review bordered-review">
+            <div class="review-avatar">
+              <%= image_tag gravatar_url(review.user, size: 60), class: "rounded-circle"  %>
+              <div><%= review.user.full_name %></div>
+            </div>
+            <div class="review-body">
+              <div class="review-header">
+                <span>
+                  <%= link_to room.listing_name, room_path(room) %>
+                </span>
+
+                <span class="float-right review-date">
+                  <%= review.created_at.strftime("%v").downcase %>
+                </span>
+                <div id="star_<%= review.id %>"></div>
+              </div>
+
+              <div class="review-content"><%= review.comment %></div>
+            </div>
+          </div>
+          <script>
+            $("#star_<%= review.id %>").raty({
+              path: '/assets',
+              readOnly: true,
+              score: <%= review.star %>
+            })
+          </script>
+        <% end %>
+      <% end %>
+    <% end %>
   </div>
 </div>

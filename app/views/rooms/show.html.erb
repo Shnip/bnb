@@ -7,17 +7,21 @@
       </div>
     </div>
 
+    <br>
+
     <div class="row my-3">
-      <div class="col-sm-8">
+      <div class="col-sm-12 col-md-8">
         <div class="row">
-          <div class="col-sm-3 text-center">
-              <%= image_tag gravatar_url(@room.user, size:100), class: "rounded-circle h-75" %>
-              <p class="h4 h-25">
+          <div class="col-sm-12 col-md-3 text-center">
+            <%= link_to user_path(@room.user) do %>
+              <%= image_tag gravatar_url(@room.user, size:100), class: "rounded-circle img-fluid" %>
+              <p class="h4 text-dark">
                 <%= @room.user.full_name %>
               </p>
+            <% end %>
           </div>
 
-          <div class="col-sm-9">
+          <div class="col-sm-12 col-md-9 mb-sm-3 mb-md-0">
             <h4><%= @room.listing_name %></h4>
             <p><%= @room.address %></p>
 
@@ -45,7 +49,7 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-10 offset-sm-1 col-md-4 offset-md-0">
         <div class="room-price">
           <span class="text-left">$<%= @room.price %></span>
           <span class="text-right">Per Night</span>
@@ -59,6 +63,9 @@
         </div>
       </div>
     </div>
+
+    <hr>
+
     <!-- About this Listing -->
     <div class="row my-3">
       <div class="col-sm-12">
@@ -66,6 +73,9 @@
         <p><%= @room.summary %></p>
       </div>
     </div>
+
+    <hr>
+    <br>
     <!-- Amentities -->
     <div class="row my-3">
       <div class="col-sm-2">
@@ -102,6 +112,9 @@
         </div>
       </div>
     </div>
+
+    <hr>
+    <br>
     <!-- Carousel -->
     <div class="row my-3">
       <div class="col-md-10 offset-md-1 d-flex justify-content-center">
@@ -137,6 +150,30 @@
         <% end %>
       </div>
     </div>
+
+    <hr>
+
+    <!-- Reviews -->
+    <div class="row my-3">
+      <div class="col-sm-12">
+        <div id="reviews-header">
+          <%= render "reviews/header" %>
+        </div>
+        <div class="offset-sm-1 col-sm-10 offset-md-2 col-md-8" id="reviews">
+          <% if @reviews.blank? %>
+            <div class="text-center">
+              <h4>There is no review yet</h4>
+            </div>
+          <% else %>
+            <%= render @reviews %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+    <br>
+
     <!-- Google Map -->
     <div class="row my-3">
       <div class="col-md-12">
@@ -162,6 +199,11 @@
         </div>
       </div>
     </div>
+
+    <hr>
+    <br>
+
+    <!-- Near by -->
     <h3>Near by</h3>
     <div class="row my-3">
 

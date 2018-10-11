@@ -1,0 +1,15 @@
+<h3>
+   Reviews
+  <span id="average-rating"></span>(<%= @reviews.count %>)
+</h3>
+<div class="offset-sm-1 col-sm-10 offset-md-2 col-md-8">
+  <%= render "reviews/form" if @booked && !@review && !current_user?(@room.user)%>
+</div>
+
+<script>
+$("#average_rating").raty({
+  path: '/assets',
+  readOnly: true,
+  score: <%= @room.average_rating %>
+})
+</script>

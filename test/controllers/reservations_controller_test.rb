@@ -16,7 +16,7 @@ class ReservationsControllerTest < ActionDispatch::IntegrationTest
     assert_not flash[:success].blank?
   end
 
-  test "the test should not create a reservation when the date matches the date booked " do
+  test "should not create a reservation when the date matches the date booked " do
     assert_no_difference "Reservation.count" do
       post room_reservations_path(@room), params: {reservation:{ start_date: "2018-10-03", end_date: "2018-10-07", room_id: @room.id, price: @room.price, total: 400 }}
     end

@@ -1,7 +1,102 @@
-<div class="center jumbotron">
-  <h1 class="display-4">Welcome to the BnB</h1>
-  <p class="lead">
-    Book unique accommodations and impressions around the world.
-  </p>
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-md btn-primary" %>
+<% content_for :home_page do %>
+  <div class="home-container">
+    <div class="home-img">
+    </div>
+    <div class="home-search col-sm-12 col-md-6 offset-md-5 col-lg-5 offset-lg-6 col-xl-3 offset-xl-7">
+      <div class="row">
+        <div class="col-sm-12">
+            <h2>Book unique accommodation and Impressions</h2>
+            <%= form_tag search_path, method: :get do |f| %>
+              <div class="row">
+                <div class="col-sm-12">
+                  <%= label_tag :search, "Wherever you want" %>
+                  <%= text_field_tag :search, params[:search], placeholder: "Where are u going?", class: "form-control" %>
+                </div>
+                <div class="col-sm-6 mt-3">
+                  <%= label_tag :start_date, "Arrival" %>
+                  <%= text_field_tag :start_date, params[:start_date], placeholder: "Start Date", class: "form-control" %>
+                </div>
+                <div class="col-sm-6 mt-3">
+                  <%= label_tag :end_date, "Departure" %>
+                  <%= text_field_tag :end_date, params[:end_date], placeholder: "End Date", class: "form-control" %>
+                </div>
+                <div class="offset-sm-8 col-sm-4 mt-3 col-md-6 offset-md-6 col-xl-6 offset-xl-6">
+                  <%= submit_tag "Search", class: "btn btn-fox w-100" %>
+                </div>
+              </div>
+            <% end %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function() {
+      $("#start_date").datepicker({
+        dateFormat: 'dd-mm-yy',
+        minDate: 0,
+        maxDate: '3m',
+        onSelect: function(selected){
+          $("#end_date").datepicker("option", "minDate", selected);
+          $("#end_date").attr("disabled", false);
+        }
+      });
+
+      $("#end_date").datepicker({
+        dateFormat: 'dd-mm-yy',
+        minDate: 0,
+        maxDate: '3m',
+        onSelect: function(selected){
+          $("#start_date").datepicker("option", "maxDate", selected);
+        }
+      });
+
+    })
+  </script>
+<% end -%>
+
+<br>
+
+<div class="text-center">
+  <h2>Just for the weekend</h2>
+  <p>Discover new, inspiring places close to home</p>
+</div>
+
+<br>
+
+<div class="row">
+  <div class="col-sm-12 col-md-4 mb-4 mb-md-0">
+    <%= link_to search_path(search: "New York") do %>
+      <div class="discovery-card new-york">
+        <h1>New York</h1>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-sm-12 col-md-4 mb-4 mb-md-0">
+    <%= link_to search_path(search: "Paris") do %>
+      <div class="discovery-card paris">
+        <h1>Paris</h1>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-sm-12 col-md-4 mb-4 mb-md-0">
+    <%= link_to search_path(search: "Rome") do %>
+      <div class="discovery-card rome">
+        <h1>Rome</h1>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<br>
+
+<div class="text-center">
+  <h2>Explore the world</h2>
+  <p>The World is a book, and those who do not travel read only a page</p>
+</div>
+
+<br>
+
+<div class="row">
+  <%= render @rooms %>
 </div>

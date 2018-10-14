@@ -15,7 +15,7 @@ one:
   is_heating: false
   is_internet: false
   price: 200
-  active: false
+  active: true
   user: one
   latitude: null
   longitude: null
@@ -28,17 +28,17 @@ two:
   bath_room: 1
   listing_name: MyString
   summary: MyText
-  address: MyString
+  address: "2863 California St, San Francisco, CA 94115, USA"
   is_tv: false
   is_kitchen: false
   is_air: false
   is_heating: false
   is_internet: false
   price: 100
-  active: false
+  active: true
   user: one
-  latitude: null
-  longitude: null
+  latitude: 37.7878549795918
+  longitude: -122.441456938776
 
 three:
   home_type: MyString
@@ -55,7 +55,7 @@ three:
   is_heating: false
   is_internet: false
   price: 1
-  active: false
+  active: true
   user: two
   latitude: null
   longitude: null

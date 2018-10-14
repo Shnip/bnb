@@ -71,3 +71,4 @@ gem "paperclip", "~> 6.0.0"
 gem 'geocoder'
 gem 'jquery-ui-rails'
 gem 'redis'
+gem 'ransack'

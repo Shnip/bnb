@@ -141,6 +141,7 @@ a, a:hover{
 }
 
 .photo-preview{
+  margin: 5px;
   .card-header{
     padding: 0;
     height: 170px;
@@ -159,6 +160,48 @@ a, a:hover{
     &:hover{
       color: #868a8b;
       text-decoration: none;
+    }
+  }
+}
+
+.photo-card{
+  margin: 7px 0;
+  box-sizing: border-box;
+
+  .photo-header{
+    padding: 0;
+    max-height: 145px;
+    text-align: center;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 5px;
+
+    img{
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .photo-body {
+    padding-top: 10px;
+
+    .photo-title{
+      font-size: 1.1rem;
+    }
+
+    p{
+      font-size: 1rem;
+    }
+
+    a {
+      color: #4b4c4c;
+      text-decoration: none;
+      font-weight: 500;
+
+      &:hover{
+        color: #868a8b;
+        text-decoration: none;
+      }
     }
   }
 }
@@ -327,6 +370,54 @@ i.icon{
   margin-bottom: 1rem;
 }
 
+.no-img{
+  padding: 40px 10px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #868a8b;
+}
+
+.search-wrapper{
+  #map{
+    height: 100%;
+    min-height: 300px;
+  }
+}
+
+.discovery-card{
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 6.5px #000;
+
+  &:hover{
+    transform: scale(1.1, 1.1);
+  }
+
+  h1{
+    padding: 5rem 2rem;
+    color: #fff;
+    font-weight: 700;
+  }
+}
+
+.paris{
+  background-image: url('paris.jpg');
+
+}
+
+.new-york{
+  background-image: url('NY.jpg');
+}
+
+.rome{
+  background-image: url('rome3.jpg');
+}
 
 /* BOOTSTRAP */
 .panel, .btn, .list-group-item:first-child, .list-group-item:last-child{
@@ -365,4 +456,59 @@ a.navbar-brand {
 .form-control{
   border-radius: 2px;
   height: calc(2.85rem + 2px);
+}
+@media (min-width: 768px){
+  .home-container{
+    position: relative;
+    overflow: hidden;
+    .home-img{
+      background-image: url("home-img.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      min-width: 100vw;
+      min-height: 97vh;
+
+      img{
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .home-search{
+      //width: 25%;
+      border: 1px solid #dce0e0;
+      border-radius: 5px;
+      padding: 2rem;
+      background-color: #fff;
+      position: absolute;
+      top: 4%;
+      opacity: 0.98;
+    }
+  }
+}
+
+@media (max-width: 768px){
+  .home-container{
+    position: relative;
+    overflow: hidden;
+    .home-img{
+      background-image: url("home-img.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      width: 100%;
+      height: 340px;
+
+      img{
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  .home-search{
+    border: 1px solid #dce0e0;
+    padding: 2rem;
+    background-color: #fff;
+    position: relative;
+  }
 }

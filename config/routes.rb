@@ -11,7 +11,7 @@ get 'preload' => 'reservations#preload'
 get 'check_conflict' => 'reservations#check_conflict'
 get 'your_trips' => 'reservations#your_trips'
 get 'your_reservations' => 'reservations#your_reservations'
-
+get 'search' => 'static_pages#search'
 resources :user_sessions, only: [:new, :create, :destroy]
 resources :users
 resources :password_resets, only: [:new, :create, :edit, :update]

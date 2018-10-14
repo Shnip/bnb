@@ -10,7 +10,7 @@ class RoomsInterfaceTest < ActionDispatch::IntegrationTest
   test "room interface" do
     get room_path(@room)
     assert_template "rooms/show"
-    assert_select "img.img-fluid", count: 1
+    assert_select "img.img-fluid", count: 2
     assert_select "img.rounded-circle", count: 2
     assert_select "#carouselExampleIndicators"
     assert_select "#carouselExampleIndicators img", count: @room.photos.count

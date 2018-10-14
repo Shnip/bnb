@@ -1,0 +1,199 @@
+<div class="search-wrapper">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-8">
+      <%= search_form_for @search, url: search_path do |f| %>
+        <div class="row">
+          <div class="col-sm-12 mb-2">
+            <%= text_field_tag :search, params[:search], placeholder: "Where are u going?", class: "form-control" %>
+          </div>
+          <div class="col-md-3 col-sm-6 mb-2">
+            <%= text_field_tag :start_date, params[:start_date], placeholder: "Start Date", class: "form-control" %>
+          </div>
+          <div class="col-md-3 col-sm-6 mb-2">
+            <%= text_field_tag :end_date, params[:end_date], placeholder: "End Date", class: "form-control" %>
+          </div>
+          <div class="col-md-3 col-sm-6 mb-2">
+            <%= f.text_field :price_gteq, placeholder: "Min Price", class: "form-control" %>
+          </div>
+          <div class="col-md-3 col-sm-6 mb-2">
+            <%= f.text_field :price_lteq, placeholder: "Max Price", class: "form-control" %>
+          </div>
+        </div>
+        <hr>
+        <!-- Room types -->
+        <div class="row">
+            <div class="col-sm-4">
+              <div class="form-group form-check">
+                <%= label_tag "", class: "form-check-label" do %>
+                  <%= check_box_tag "q[room_type_eq_any][]", "Entire" %>
+                  Entire room
+                <% end %>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group form-check">
+                <%= label_tag "", class: "form-check-label" do %>
+                  <%= check_box_tag "q[room_type_eq_any][]", "Private" %>
+                  Private room
+                <% end %>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group form-check">
+                <%= label_tag "", class: "form-check-label" do %>
+                  <%= check_box_tag "q[room_type_eq_any][]", "Shared" %>
+                  Shared room
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <hr>
+        <!-- Selects -->
+        <div class="row">
+            <div class="col-md-4">
+              <div class="form-group select">
+                <%= label_tag "", nil, class:"w-100" do %>
+                  Accommodate
+                  <%= f.select :accommodate_gteq, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], ["6+", 6] ], {}, { prompt: "Select...",
+                                                        class: "form-control" } %>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group select">
+                <%= label_tag "", nil, class:"w-100" do %>
+                  Bedrooms
+                  <%= f.select :accommodate_gteq, [["1", 1], ["2", 2], ["3", 3], ["4+", 4] ], {}, { prompt: "Select...",
+                                                        class: "form-control" } %>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group select">
+                <%= label_tag "", nil, class:"w-100" do %>
+                  Bathrooms
+                  <%= f.select :accommodate_gteq, [["1", 1], ["2", 2], ["3", 3], ["4+", 4] ], {}, { prompt: "Select...",
+                                                        class: "form-control" } %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <hr>
+        <!-- Checkboxes  -->
+        <div class="row">
+            <div class="col-sm-4">
+              <div class="form-group form-check">
+                <%= label_tag "", class: "form-check-label" do %>
+                  <%= check_box_tag "q[is_tv_eq]", class: "form-check-input" %>
+                  <span>TV</span>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="col-sm-4">
+              <div class="form-group form-check">
+                <%= label_tag "", class: "form-check-label" do %>
+                  <%= check_box_tag "q[is_kitchen_eq]", class: "form-check-input" %>
+                  <span>Kitchen</span>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="col-sm-4">
+              <div class="form-group form-check">
+                <%= label_tag "", class: "form-check-label" do %>
+                  <%= check_box_tag "q[is_internet_eq]", class: "form-check-input" %>
+                  <span>Internet</span>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="col-sm-4">
+              <div class="form-group form-check">
+                <%= label_tag "", class: "form-check-label" do %>
+                  <%= check_box_tag "q[is_heating_eq]", class: "form-check-input" %>
+                  <span>Heating</span>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="col-sm-4">
+              <div class="form-group form-check">
+                <%= label_tag "", class: "form-check-label" do %>
+                  <%= check_box_tag "q[is_air_eq]", class: "form-check-input" %>
+                  <span>Air Conditioning</span>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <br>
+        <!-- Submit -->
+        <div class="row">
+          <div class="col-sm-3">
+            <%= f.submit "Search", class: "btn btn-fox" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-4 mt-sm-3 mt-lg-0">
+      <div id="map"></div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <%= render partial: "rooms/room", collection: @arrRooms, as: :room %>
+  </div>
+
+</div>
+
+<script>
+  $(function() {
+    $("#start_date").datepicker({
+      dateFormat: 'dd-mm-yy',
+      minDate: 0,
+      maxDate: '3m',
+      onSelect: function(selected){
+        $("#end_date").datepicker("option", "minDate", selected);
+        $("#end_date").attr("disabled", false);
+      }
+    });
+
+    $("#end_date").datepicker({
+      dateFormat: 'dd-mm-yy',
+      minDate: 0,
+      maxDate: '3m',
+      onSelect: function(selected){
+        $("#start_date").datepicker("option", "maxDate", selected);
+      }
+    });
+
+  })
+</script>
+
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiE-uKbRKuRyYFA0utax-HXfEdvnblG1U&callback=initMap">
+</script>
+
+<script>
+// Initialize and add the map
+function initMap() {
+  // The location of Uluru
+  var uluru = {lat: 12.492231, lng: 41.890210};
+
+  <% unless @arrRooms.empty? %>
+    uluru = { lat: <%= @arrRooms.first.latitude %>,
+              lng: <%= @arrRooms.first.longitude %>};
+  <% end %>
+  // The map, centered at Uluru
+  var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 12, center: uluru});
+  // The marker, positioned at Uluru
+  var marker = new google.maps.Marker(
+          {position: uluru, map: map, draggable: true,
+                          animation: google.maps.Animation.DROP,});
+}
+</script>

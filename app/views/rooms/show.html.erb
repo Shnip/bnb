@@ -2,8 +2,8 @@
 <div class="card">
   <div class="card-body">
     <div class="row">
-      <div class="col-sm-12 justify-content-center">
-        <%= image_tag @photos.first.image.url(), class: "img-fluid" unless @photos.blank? %>
+      <div class="col-sm-12 justify-content-center text-center">
+        <%= image_tag @photos.first.image.url(), class: "img-fluid w-100" unless @photos.blank? %>
       </div>
     </div>
 
@@ -145,7 +145,7 @@
           <% if current_user?(@room.user) %>
             <%= link_to "Add photos", edit_room_path(@room), class: "btn btn-default" %>
           <% else %>
-            <h2>The owner of the room has not added any photos yet</h2>
+            <h2 class="mb-5">The owner of the room has not added any photos yet</h2>
           <% end %>
         <% end %>
       </div>
@@ -209,14 +209,21 @@
 
       <% unless @room.nearbys(10).blank? %>
         <% for room in @room.nearbys(10) %>
-          <div class="col-sm-4">
-            <div class="card">
-              <div class="card-header photo-preview">
-                <%= image_tag room.photos.first.image.url(:medium), class: "card-img-top" %>
+          <div class="col-lg-3 col-md-4 col-sm-6 col-6 photo-card">
+            <div class="photo-container">
+              <div class="photo-header">
+                <% unless room.photos.blank? %>
+                  <%= image_tag room.photos.first.image.url(:medium) %>
+                <% else %>
+                  <div class="no-img">No image</div>
+                <% end %>
               </div>
-              <div class="card-body">
-                <%= link_to room.listing_name, room %>
-                (<%= room.distance.round(2) %> miles away)
+              <div class="photo-body">
+                <div class="photo-title">
+                  <%= link_to room.listing_name, room %>
+                  <div>(<%= room.distance.round(2) %> miles away)</div>
+                </div>
+                <p class="lead"><%= room.price %>$ per night</p>
               </div>
             </div>
           </div>

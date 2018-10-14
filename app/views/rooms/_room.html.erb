@@ -1,0 +1,17 @@
+<div class="col-lg-3 col-md-4 col-sm-6 col-6 photo-card">
+  <div class="photo-container">
+    <div class="photo-header">
+      <% unless room.photos.blank? %>
+        <%= image_tag room.photos.first.image.url(:medium) %>
+      <% else %>
+        <div class="no-img">No image</div>
+      <% end %>
+    </div>
+    <div class="photo-body">
+      <span class="photo-title">
+        <%= link_to room.listing_name, room %>
+      </span>
+      <p class="lead"><%= room.price %>$ per night</p>
+    </div>
+  </div>
+</div>

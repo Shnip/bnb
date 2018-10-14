@@ -7,6 +7,8 @@ class ReservationsController < ApplicationController
       redirect_to( @reservation.room, flash: {success: "Your reservation has been created!"})
     else
       @room = Room.find(params[:room_id])
+      @reviews = @room.reviews.order("id DESC")
+      @review = @reviews.find_by(user_id: current_user.id) if current_user
       flash.now[:danger] = "This date range is not available"
       render 'rooms/show'
     end

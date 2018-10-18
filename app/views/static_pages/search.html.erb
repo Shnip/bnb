@@ -182,7 +182,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiE-uKbRKuRyYFA0utax-HXfE
 // Initialize and add the map
 function initMap() {
   // The location of Uluru
-  var uluru = {lat: 12.492231, lng: 41.890210};
+  var uluru = {lat:41.890210 , lng:12.492231 };
 
   <% unless @arrRooms.empty? %>
     uluru = { lat: <%= @arrRooms.first.latitude %>,

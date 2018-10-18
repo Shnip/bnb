@@ -3,13 +3,16 @@
   <head>
     <%= render 'layouts/rails_default' %>
     <title><%= full_title(yield(:title)) %></title>
+    <style><%= yield :stylesheets %></style>
   </head>
   <body>
     <%= render 'layouts/header' %>
     <%= yield :home_page %>
     <div class="container mt-3">
-      <% flash.each do |message_type, message| %>
-        <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+      <% unless params[:controller] == 'static_pages' && params[:action] = 'home' %>
+        <% flash.each do |message_type, message| %>
+          <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+        <% end %>
       <% end %>
       <%= yield %>
     </div>

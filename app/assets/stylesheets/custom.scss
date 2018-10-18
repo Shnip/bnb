@@ -457,6 +457,13 @@ a.navbar-brand {
   border-radius: 2px;
   height: calc(2.85rem + 2px);
 }
+
+.hide-flash{
+  opacity: 0;
+  transition: opacity 1s ease-in-out 0.5s;
+}
+
+// MEDIA
 @media (min-width: 768px){
   .home-container{
     position: relative;
@@ -475,7 +482,6 @@ a.navbar-brand {
     }
 
     .home-search{
-      //width: 25%;
       border: 1px solid #dce0e0;
       border-radius: 5px;
       padding: 2rem;

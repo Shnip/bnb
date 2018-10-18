@@ -18,3 +18,11 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+document.addEventListener("DOMContentLoaded", function removeFlash(event){
+  const flash = document.querySelector('div.alert');
+  if(!flash) return false;
+  setTimeout( () => { flash.classList.add("hide-flash") }, 3000);
+  setTimeout( () => { flash.style.display = "none" }, 4500);
+  return
+});

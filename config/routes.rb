@@ -12,6 +12,11 @@ get 'check_conflict' => 'reservations#check_conflict'
 get 'your_trips' => 'reservations#your_trips'
 get 'your_reservations' => 'reservations#your_reservations'
 get 'search' => 'static_pages#search'
+get "oauth/callback" => "oauths#callback"
+get "oauth/vkontakte" => "oauths#vkontakte"
+get "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
+post "oauth/callback" => "oauths#callback"
+
 resources :user_sessions, only: [:new, :create, :destroy]
 resources :users
 resources :password_resets, only: [:new, :create, :edit, :update]

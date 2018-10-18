@@ -2,7 +2,7 @@
 # The default is nothing which will include only core features (password encryption, login/logout).
 # Available submodules are: :user_activation, :http_basic_auth, :remember_me,
 # :reset_password, :session_timeout, :brute_force_protection, :activity_logging, :external
-Rails.application.config.sorcery.submodules = [:remember_me, :reset_password]
+Rails.application.config.sorcery.submodules = [:remember_me, :reset_password, :brute_force_protection, :external]
 
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
@@ -72,7 +72,7 @@ Rails.application.config.sorcery.configure do |config|
   # What providers are supported by this app, i.e. [:twitter, :facebook, :github, :linkedin, :xing, :google, :liveid, :salesforce, :slack] .
   # Default: `[]`
   #
-  # config.external_providers =
+  config.external_providers = [:facebook, :vk]
 
   # You can change it by your local ca_file. i.e. '/etc/pki/tls/certs/ca-bundle.crt'
   # Path to ca_file. By default use a internal ca-bundle.crt.
@@ -109,15 +109,15 @@ Rails.application.config.sorcery.configure do |config|
   # config.twitter.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=twitter"
   # config.twitter.user_info_mapping = {:email => "screen_name"}
   #
-  # config.facebook.key = ""
-  # config.facebook.secret = ""
-  # config.facebook.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=facebook"
-  # config.facebook.user_info_path = "me?fields=email"
-  # config.facebook.user_info_mapping = {:email => "email"}
-  # config.facebook.access_permissions = ["email", "publish_actions"]
-  # config.facebook.display = "page"
-  # config.facebook.api_version = "v2.3"
-  # config.facebook.parse = :json
+   config.facebook.key = ""
+   config.facebook.secret = ""
+   config.facebook.callback_url = "https://11ec8a7a.ngrok.io/oauth/callback?provider=facebook"
+   config.facebook.user_info_path = "me?fields=email,first_name, last_name"
+   config.facebook.user_info_mapping = {:email => "email", :first_name => "first_name", :last_name => "last_name"}
+   config.facebook.access_permissions = ["email", "public_profile"]
+   config.facebook.display = "page"
+   config.facebook.api_version = "v3.1"
+   config.facebook.parse = :json
   #
   # config.github.key = ""
   # config.github.secret = ""
@@ -150,11 +150,11 @@ Rails.application.config.sorcery.configure do |config|
   # config.microsoft.user_info_mapping = {:email => "userPrincipalName", :username => "displayName"}
   # config.microsoft.scope = "openid email https://graph.microsoft.com/User.Read"
   #
-  # config.vk.key = ""
-  # config.vk.secret = ""
-  # config.vk.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=vk"
-  # config.vk.user_info_mapping = {:login => "domain", :name => "full_name"}
-  # config.vk.api_version = "5.71"
+   config.vk.key = ""
+   config.vk.secret = ""
+   config.vk.callback_url = "https://11ec8a7a.ngrok.io/oauth/vkontakte"
+   config.vk.user_info_mapping = {:login => "domain", :name => "full_name"}
+   config.vk.api_version = "5.71"
   #
   # config.slack.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=slack"
   # config.slack.key = ''
@@ -489,7 +489,7 @@ Rails.application.config.sorcery.configure do |config|
     # Class which holds the various external provider data for this user.
     # Default: `nil`
     #
-    # user.authentications_class =
+    user.authentications_class = Authentication
 
     # User's identifier in authentications class.
     # Default: `:user_id`

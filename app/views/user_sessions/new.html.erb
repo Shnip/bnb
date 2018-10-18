@@ -27,6 +27,15 @@
       </div>
       <%= submit_tag "Log in", class: "btn btn-fox offset-md-4" %>
     <% end %>
+    <div class="text-center">
+      <%= link_to auth_at_provider_path(:provider => :vk) do %>
+        <i class="fab fa-vk fa-2x"></i>
+      <% end %>
+      |
+      <%= link_to auth_at_provider_path(:provider => :facebook) do %>
+        <i class="fab fa-facebook-square fa-2x"></i>
+      <% end %>
+    </div>
     <hr class="form_divider">
     <p>New user? <%= link_to "Sign up now!", signup_path %></p>
   </div>

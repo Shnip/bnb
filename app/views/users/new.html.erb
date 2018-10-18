@@ -10,7 +10,15 @@
             <%= render 'fields', form: form %>
 
             <%= form.submit "Create my account", class: "btn btn-fox w-100" %>
-
+            <div class="text-center">
+              <%= link_to auth_at_provider_path(:provider => :vk) do %>
+                <i class="fab fa-vk fa-2x"></i>
+              <% end %>
+              |
+              <%= link_to auth_at_provider_path(:provider => :facebook) do %>
+                <i class="fab fa-facebook-square fa-2x"></i>
+              <% end %>
+            </div>
           <% end %>
         </div>
       </div>

@@ -6,7 +6,9 @@ class User < ApplicationRecord
   has_many :conversations
   has_many :messages, dependent: :destroy
   has_many :reviews, dependent: :destroy
+  has_many :authentications, :dependent => :destroy
 
+  accepts_nested_attributes_for :authentications
   attr_accessor :activation_token
 
   validates :password, length: { minimum: 4 }, if: -> { new_record? || changes[:crypted_password] }
